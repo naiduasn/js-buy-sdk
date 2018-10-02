@@ -8,7 +8,7 @@ import customerAccessTokenCreateMutation from './graphql/customerAccessTokenCrea
 import customerAccessTokenRenewMutation from './graphql/customerAccessTokenRenewMutation.graphql';
 import customerCreateMutation from './graphql/customerCreateMutation.graphql';
 import customerUpdateMutation from './graphql/customerUpdateMutation.graphql';
-//import customerAddressCreateMutation from './graphql/customerAddressCreateMutation.graphql';
+import customerAddressCreateMutation from './graphql/customerAddressCreateMutation.graphql';
 //import customerAddressUpdateMutation from './graphql/customerAddressUpdateMutation.graphql';
 //import customerAddressDeleteMutation from './graphql/customerAddressDeleteMutation.graphql';
 //import customerDefaultAddressUpdateMutation from './graphql/customerDefaultAddressUpdateMutation.graphql';
@@ -158,11 +158,11 @@ class CustomerResource extends Resource {
    *   @param {Object} [input.address] The new address. See the {@link https://help.shopify.com/api/storefront-api/reference/input_object/mailingaddressinput|Storefront API reference} for valid input fields.
    * @return {Promise|GraphModel} A promise resolving with the new customer address.
    */
-  // createAddress({customerAccessToken, address}) {
-  //   return this.graphQLClient
-  //     .send(customerAddressCreateMutation, {customerAccessToken, address})
-  //     .then(handleCustomerMutation('customerAddressCreate', this.graphQLClient));
-  // }
+  createAddress({customerAccessToken, address}) {
+    return this.graphQLClient
+      .send(customerAddressCreateMutation, {customerAccessToken, address})
+      .then(handleCustomerMutation('customerAddressCreate', this.graphQLClient));
+  }
 
   /**
    * Deletes an existing address for a customer.

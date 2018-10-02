@@ -10,6 +10,8 @@ import checkoutLineItemsRemoveMutation from './graphql/checkoutLineItemsRemoveMu
 import checkoutLineItemsUpdateMutation from './graphql/checkoutLineItemsUpdateMutation.graphql';
 import checkoutAttributesUpdateMutation from './graphql/checkoutAttributesUpdateMutation.graphql';
 import checkoutDiscountCodeApplyMutation from './graphql/checkoutDiscountCodeApplyMutation.graphql';
+import checkoutCustomerAssociateMutation from './graphql/checkoutCustomerAssociateMutation.graphql';
+//import checkoutCustomerDisassociateMutation from './graphql/checkoutCustomerDisassociateMutation.graphql';
 
 /**
  * The JS Buy SDK checkout resource
@@ -91,6 +93,27 @@ class CheckoutResource extends Resource {
     return this.graphQLClient
       .send(checkoutAttributesUpdateMutation, {checkoutId, input})
       .then(handleCheckoutMutation('checkoutAttributesUpdate', this.graphQLClient));
+  }
+
+  /**
+   * Replaces the value of checkout's email address
+   *
+   * @example
+   * const checkoutId = 'Z2lkOi8vc2hvcGlmeS9DaGVja291dC9kMTZmM2EzMDM4Yjc4N=';
+   * const email = 'user@example.com';
+   *
+   * client.checkout.updateEmail(checkoutId, email).then((checkout) => {
+   *   // Do something with the updated checkout
+   * });
+   *
+   * @param {String} checkoutId The ID of the checkout to add discount to.
+   * @param {String} email The email address to apply to the checkout.
+   * @return {Promise|GraphModel} A promise resolving with the updated checkout.
+   */
+  updateEmail(checkoutId, email) {
+    return this.graphQLClient
+      .send(checkoutEmailUpdateMutation, {checkoutId, email})
+      .then(handleCheckoutMutation('checkoutEmailUpdate', this.graphQLClient));
   }
 
   /**
@@ -182,6 +205,41 @@ class CheckoutResource extends Resource {
       .send(checkoutLineItemsUpdateMutation, {checkoutId, lineItems})
       .then(handleCheckoutMutation('checkoutLineItemsUpdate', this.graphQLClient));
   }
+
+  /**
+   * Associates a checkout with a customer.
+   *
+   * @example
+   * client.checkout.associateCustomer('FlZj9rZXlN5MDY4ZDFiZTUyZTUwNTE2MDNhZjg=', 'ae0f1d2e179c9571122a0595a6ac8125').then((checkout) => {
+   *   // Do something with the checkout after associating a customer
+   * });
+   *
+   * @param {String} checkoutId The id of the checkout.
+   * @param {String} customerAccessToken The id of the checkout to fetch.
+   * @return {Promise|GraphModel} A promise resolving with the checkout.
+   */
+  associateCustomer(checkoutId, customerAccessToken) {
+    return this.graphQLClient
+      .send(checkoutCustomerAssociateMutation, {checkoutId, customerAccessToken})
+      .then(handleCheckoutMutation('checkoutCustomerAssociate', this.graphQLClient));
+  }
+
+  /**
+   * Disassociates a checkout with a customer.
+   *
+   * @example
+   * client.checkout.disassociateCustomer('FlZj9rZXlN5MDY4ZDFiZTUyZTUwNTE2MDNhZjg=').then((checkout) => {
+   *   // Do something with the checkout after disassociating a customer
+   * });
+   *
+   * @param {String} checkoutId The id of the checkout.
+   * @return {Promise|GraphModel} A promise resolving with the checkout.
+   */
+  // disassociateCustomer(checkoutId) {
+  //   return this.graphQLClient
+  //     .send(checkoutCustomerDisassociateMutation, {checkoutId})
+  //     .then(handleCheckoutMutation('checkoutCustomerDisassociate', this.graphQLClient));
+  // }
 }
 
 export default CheckoutResource;

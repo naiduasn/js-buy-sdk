@@ -8,6 +8,9 @@ fragment CustomerFragment on Customer {
   lastName
   displayName
   acceptsMarketing
+  defaultAddress {
+    ...MailingAddressFragment
+  }
   orders(first: 250) {
     pageInfo {
       hasNextPage
@@ -17,6 +20,18 @@ fragment CustomerFragment on Customer {
       cursor
       node {
         ...OrderFragment
+      }
+    }
+  }
+  addresses(first: 250) {
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+    }
+    edges {
+      cursor
+      node {
+        ...MailingAddressFragment
       }
     }
   }

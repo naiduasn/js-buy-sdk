@@ -7,6 +7,9 @@ fragment OrderFragment on Order {
   orderNumber
   phone
   processedAt
+  shippingAddress {
+    ...MailingAddressFragment
+  }
   subtotalPrice
   totalPrice
   totalRefunded

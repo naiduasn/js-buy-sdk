@@ -1,0 +1,14 @@
+mutation checkoutCustomerAssociate($checkoutId: ID!, $customerAccessToken: String!) {
+  checkoutCustomerAssociate(checkoutId: $checkoutId, customerAccessToken: $customerAccessToken) {
+    userErrors {
+      field
+      message
+    }
+    checkout {
+        ...CheckoutFragment
+    }
+    customer {
+      id
+    }
+  }
+}
