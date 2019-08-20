@@ -1,6 +1,7 @@
 export default {
   "data": {
-    "checkoutAttributesUpdate": {
+    "checkoutAttributesUpdateV2": {
+      "checkoutUserErrors": [],
       "userErrors": [],
       "checkout": {
         "id": "Z2lkOi8vU2hvcGlmeS9FeGFtcGxlLzE=",
@@ -69,6 +70,10 @@ export default {
         "taxesIncluded": false,
         "currencyCode": "CAD",
         "totalTax": "42.24",
+        "lineItemsSubtotalPrice": {
+          "amount": "324.95",
+          "currencyCode": "CAD"
+        },
         "subtotalPrice": "324.95",
         "totalPrice": "367.19",
         "completedAt": null,

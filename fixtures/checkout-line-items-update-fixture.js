@@ -1,9 +1,8 @@
 export default {
    "data":{
       "checkoutLineItemsUpdate":{
-         "userErrors":[
-
-         ],
+         "userErrors":[],
+         "checkoutUserErrors": [],
          "checkout":{
             "id":"Z2lkOi8vc2hvcGlmeS9DaGVja291dC9lM2JkNzFmNzI0OGM4MDZmMzM3MjVhNTNlMzM5MzFlZj9rZXk9NDcwOTJlNDQ4NTI5MDY4ZDFiZTUyZTUwNTE2MDNhZjg=",
             "ready":true,
@@ -62,6 +61,10 @@ export default {
             "taxesIncluded":false,
             "currencyCode":"CAD",
             "totalTax":"0.00",
+            "lineItemsSubtotalPrice": {
+              "amount": "376.00",
+              "currencyCode": "CAD"
+            },
             "subtotalPrice":"376.00",
             "totalPrice":"376.00",
             "completedAt":null,
