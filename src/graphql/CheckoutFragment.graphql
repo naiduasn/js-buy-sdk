@@ -61,6 +61,7 @@ fragment CheckoutFragment on Checkout {
     firstName
     lastName
     email
+  }
   discountApplications(first: 10) {
     pageInfo {
       hasNextPage

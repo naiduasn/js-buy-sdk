@@ -9,8 +9,6 @@ import checkoutLineItemsAddMutation from './graphql/checkoutLineItemsAddMutation
 import checkoutLineItemsRemoveMutation from './graphql/checkoutLineItemsRemoveMutation.graphql';
 import checkoutLineItemsReplaceMutation from './graphql/checkoutLineItemsReplaceMutation.graphql';
 import checkoutLineItemsUpdateMutation from './graphql/checkoutLineItemsUpdateMutation.graphql';
-import checkoutAttributesUpdateMutation from './graphql/checkoutAttributesUpdateMutation.graphql';
-import checkoutDiscountCodeApplyMutation from './graphql/checkoutDiscountCodeApplyMutation.graphql';
 import checkoutCustomerAssociateMutation from './graphql/checkoutCustomerAssociateMutation.graphql';
 //import checkoutCustomerDisassociateMutation from './graphql/checkoutCustomerDisassociateMutation.graphql';
 import checkoutAttributesUpdateV2Mutation from './graphql/checkoutAttributesUpdateV2Mutation.graphql';
