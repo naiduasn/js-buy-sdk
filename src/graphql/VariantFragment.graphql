@@ -21,6 +21,7 @@ fragment VariantFragment on ProductVariant {
     }
   }
   weight
+  weightUnit
   available: availableForSale
   sku
   compareAtPrice

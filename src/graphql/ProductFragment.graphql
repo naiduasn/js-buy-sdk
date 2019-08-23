@@ -9,11 +9,25 @@ fragment ProductFragment on Product {
   productType
   title
   vendor
+  tags
   publishedAt
   onlineStoreUrl
   options {
     name
     values
+  }
+  metafields(first: 50){
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+    }
+    edges {
+      cursor
+      node {
+        key
+        value
+      }
+    }
   }
   images(first: 250) {
     pageInfo {

@@ -11,6 +11,10 @@ export default function fetchResourcesForProducts(productOrProduct, client) {
       product.attrs.variants = variants;
     }));
 
+    promiseAcc.push(client.fetchAllPages(product.metafields, {pageSize: 50}).then((metafields) => {
+      product.attrs.metafields = metafields;
+    }));
+
     return promiseAcc;
   }, []));
 }
