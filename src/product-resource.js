@@ -1,6 +1,6 @@
 import Resource from './resource';
 import defaultResolver from './default-resolver';
-import {paginateProductConnectionsAndResolve} from './paginators';
+import { paginateProductConnectionsAndResolve } from './paginators';
 import productHelpers from './product-helpers';
 
 // GraphQL
@@ -8,6 +8,7 @@ import productNodeQuery from './graphql/productNodeQuery.graphql';
 import productNodesQuery from './graphql/productNodesQuery.graphql';
 import productConnectionQuery from './graphql/productConnectionQuery.graphql';
 import productByHandleQuery from './graphql/productByHandleQuery.graphql';
+import productRecommendationsQuery from './graphql/productRecommendationsQuery.graphql';
 
 /**
  * The JS Buy SDK product resource
@@ -31,7 +32,7 @@ class ProductResource extends Resource {
    */
   fetchAll(first = 20) {
     return this.graphQLClient
-      .send(productConnectionQuery, {first})
+      .send(productConnectionQuery, { first })
       .then(defaultResolver('products'))
       .then(paginateProductConnectionsAndResolve(this.graphQLClient));
   }
@@ -49,7 +50,7 @@ class ProductResource extends Resource {
    */
   fetch(id) {
     return this.graphQLClient
-      .send(productNodeQuery, {id})
+      .send(productNodeQuery, { id })
       .then(defaultResolver('node'))
       .then(paginateProductConnectionsAndResolve(this.graphQLClient));
   }
@@ -68,7 +69,7 @@ class ProductResource extends Resource {
    */
   fetchMultiple(ids) {
     return this.graphQLClient
-      .send(productNodesQuery, {ids})
+      .send(productNodesQuery, { ids })
       .then(defaultResolver('nodes'))
       .then(paginateProductConnectionsAndResolve(this.graphQLClient));
   }
@@ -86,8 +87,26 @@ class ProductResource extends Resource {
    */
   fetchByHandle(handle) {
     return this.graphQLClient
-      .send(productByHandleQuery, {handle})
+      .send(productByHandleQuery, { handle })
       .then(defaultResolver('productByHandle'))
+      .then(paginateProductConnectionsAndResolve(this.graphQLClient));
+  }
+
+  /**
+   * Fetches Recommendations for product by ID.
+   *
+   * @example
+   * client.product.fetchProductRecommendations('my-product-id').then((product) => {
+    *   // Do something with the product
+    * });
+    *
+    * @param {String} productId The handle of the product to fetch.
+    * @return {Promise|GraphModel} A promise resolving with a `GraphModel` of the product.
+    */
+  fetchProductRecommendations(productId) {
+    return this.graphQLClient
+      .send(productRecommendationsQuery, {productId})
+      .then(defaultResolver('productRecommendations'))
       .then(paginateProductConnectionsAndResolve(this.graphQLClient));
   }
 
@@ -107,7 +126,7 @@ class ProductResource extends Resource {
    *   @param {Boolean} [args.reverse] Whether or not to reverse the sort order of the results
    * @return {Promise|GraphModel[]} A promise resolving with an array of `GraphModel`s of the products.
    */
-  fetchQuery({first = 20, sortKey = 'ID', query, reverse} = {}) {
+  fetchQuery({ first = 20, sortKey = 'ID', query, reverse } = {}) {
     return this.graphQLClient
       .send(productConnectionQuery, {
         first,
